@@ -1,0 +1,20 @@
+Package: ipcwswitch
+Title: Inverse Probability of Censoring Weights to Deal with Treatment
+        Switch in Randomized Clinical Trials
+Version: 1.0.1
+Authors@R: c(person("Nathalie", "Graffeo", email = "nathalie.graffeo@univ-amu.fr", role = c("aut", "cre")), person("Aurelien", "Latouche", role=c("aut")), person("Sylvie", "Chevret", role=c("aut")))
+Maintainer: Nathalie Graffeo <nathalie.graffeo@univ-amu.fr>
+Description: Contains functions for formatting clinical trials data and implementing inverse probability of censoring weights to handle treatment switches when estimating causal treatment effect in randomized clinical trials.
+Depends: R (>= 2.10), survival (>= 2.42)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
+Imports: stats
+NeedsCompilation: no
+Packaged: 2018-11-07 19:27:59 UTC; Nathalie
+Author: Nathalie Graffeo [aut, cre],
+  Aurelien Latouche [aut],
+  Sylvie Chevret [aut]
+Repository: CRAN
+Date/Publication: 2018-11-16 17:20:10 UTC

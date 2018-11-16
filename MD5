@@ -1,0 +1,16 @@
+cc0c7652bc0802bfd5e8b6aa31c08c64 *DESCRIPTION
+7d1b3e9a97cd203addca6837853742ec *NAMESPACE
+5cc913fd199340072d27c063f26c8606 *R/cens.ipw.R
+5f58f7cc64caa1fce2ee85cf2ee7a1c0 *R/ipcw.R
+f09f7d6b6e7f09c8eeb482b76ed42818 *R/replicRows.R
+7e2da7ae8d19b863ffdd8f1b2a3f43bc *R/timesToKeep.R
+9668fcbdcd1d11ae11a993fd719c0b27 *R/wideToLongTDC.R
+53d1ff57f53f9001e2af612e4edc889c *data/data.ipcw.rda
+e32b98d9d49c5b0dbe730976b2de8b2b *data/toydata.rda
+f69bdf5560c909b9ae0765005f1fddcc *man/cens.ipw.Rd
+4605289100b858411d679da729696876 *man/data.ipcw.Rd
+d0475171dd4754f44c73275fbb36a4ba *man/ipcw.Rd
+e3693fe36ee1eb50ea858cf3c41b4c42 *man/replicRows.Rd
+e414e10f79de63c543225e786e9b04ad *man/timesTokeep.Rd
+3c0b995f8d654bdb1da77d2b5cafe821 *man/toydata.Rd
+828311acd9253423973f0a72fede0165 *man/wideToLongTDC.Rd
