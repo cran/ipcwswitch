@@ -57,7 +57,7 @@
 #' toy.rep   <- replicRows(toy.long2, tstart = "tstart", tstop = "tstop",
 #'                         event = "event", cens = "cens", times = rep.times)
 #' toy.rep
-#' @seealso \code{\link{cens.ipw}}, \code{\link{data.ipcw}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
+#' @seealso \code{\link{cens.ipw}}, \code{\link{SHIdat}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
 replicRows <- function(data, tstart, tstop, event, cens, times){
 
 
@@ -85,7 +85,8 @@ replicRows <- function(data, tstart, tstop, event, cens, times){
 
     return(do.call(rbind, d1))
   })
-  SHIlong2 <- do.call( rbind, tablist )
+
+  return(do.call( rbind, tablist )) # 2019-02-03: change the way to return the output
 
 }
 

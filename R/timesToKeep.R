@@ -25,7 +25,7 @@
 #' kept.t[[1]][[3]]
 #' # To obtain the kept times in numeric format:
 #' kept.t[[2]][[3]]
-#' @seealso \code{\link{data.ipcw}}
+#' @seealso \code{\link{SHIdat}}
 
 timesTokeep <- function(data, id, tstart, tstop,
                         mes.cov, time.cov){

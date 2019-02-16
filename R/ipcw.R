@@ -26,8 +26,8 @@
 #' # bas.cov = c("age", "arm", "swtrtdt"),
 #' # conf = c("TDconf"), trunc = 0.05)
 #'
-#' # see ?data.ipcw for a complete example
-#' @seealso \code{\link{data.ipcw}}
+#' # see ?SHIdat for a complete example
+#' @seealso \code{\link{SHIdat}}
 ipcw <- function(data, tstart, tstop, cens, arm, bas.cov, conf, trunc=NULL){
 
     tempcall <- match.call()

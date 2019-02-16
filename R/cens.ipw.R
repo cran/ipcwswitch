@@ -59,7 +59,7 @@
 #' toy.long
 #' # Ater censoring:
 #' toy.long2
-#' @seealso \code{\link{data.ipcw}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
+#' @seealso \code{\link{SHIdat}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
 
 cens.ipw <- function(data, id, tstart, tstop, event, censTime, arm, realtrt = FALSE,
                      trt.start = NULL, trt.stop = NULL){

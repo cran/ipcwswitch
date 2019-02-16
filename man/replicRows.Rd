@@ -74,5 +74,5 @@ toy.rep
 Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
 }
 \seealso{
-\code{\link{cens.ipw}}, \code{\link{data.ipcw}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
+\code{\link{cens.ipw}}, \code{\link{SHIdat}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
 }

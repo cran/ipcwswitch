@@ -37,11 +37,11 @@ Computing the stabilized IPCweights
 # bas.cov = c("age", "arm", "swtrtdt"),
 # conf = c("TDconf"), trunc = 0.05)
 
-# see ?data.ipcw for a complete example
+# see ?SHIdat for a complete example
 }
 \references{
 Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
 }
 \seealso{
-\code{\link{data.ipcw}}
+\code{\link{SHIdat}}
 }

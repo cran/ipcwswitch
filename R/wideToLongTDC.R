@@ -35,7 +35,7 @@
 #' time.cov = list(c("randt", "dt2", "dt3")),
 #' times = kept.t[[1]])
 #' toy.long
-#' @seealso \code{\link{data.ipcw}}, \code{\link{timesTokeep}}
+#' @seealso \code{\link{SHIdat}}, \code{\link{timesTokeep}}
 
 wideToLongTDC <- function(data, id, tstart, tstop, event,
                           bas.cov, mes.cov, time.cov, times){

@@ -82,5 +82,5 @@ toy.long2
 Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
 }
 \seealso{
-\code{\link{data.ipcw}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
+\code{\link{SHIdat}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
 }
