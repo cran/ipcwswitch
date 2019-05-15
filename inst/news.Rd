@@ -20,6 +20,13 @@
     }
 }
 
+\section{Changes in version 1.0.3}{
+  \itemize{
+    \item 12 May 2019  New replicRows.R function with additional parameters (\code{times1} and \code{times2} parameters to allow collecting times in each arm separately, and \code{arm} parameter to be able to do each computation)
+    \item 12 May 2019  New ipcw.R function. The new \code{for} loop included in this version gathers patients by their identifiers, which are indicated by the additional parameter \code{id}. Also, the new \code{type} parameter allows to specify the type of survival curve.
+    }
+}
+
 
 
 

@@ -7,8 +7,11 @@
 #' @param tstop the date of the end of the follow-up (in numeric format)
 #' @param event the indicator of failure (a death is denoted by 1 at the end of the follow-up)
 #' @param cens the indicator of treatment censoring (denoted by 1 at the end of the follow-up)
-#' @param times a vector of times (in numeric format) inidicating the times according to which
-#' the rows have to be split
+#' @param times1 a vector of times (in numeric format) indicating the times according to which
+#' the rows have to be split for patients in the first arm 
+#' @param times2 a vector of times (in numeric format) indicating the times according to which
+#' the rows have to be split for patients in the second arm 
+#' @param arm the randomized treatment (2-levels factor)
 #'
 #' @return a formatted dataframe with the rows replicated according to the provided times parameter
 #' @export
@@ -50,43 +53,101 @@
 #' toy.long2 <- cens.ipw(toy.long, id = "id", tstart = "tstart", tstop = "tstop",
 #' event = "event", arm = "arm",
 #' realtrt = FALSE, censTime ="swtrtdt")
-#' # We collect all event times (death and treatment censoring)
-#' rep.times <- unique(c(toy.long2$tstop[toy.long2$cens==1],
+#' # We collect all event times (death for both arms and treatment censoring according to the trt arm)
+#' rep.times1 <- unique(c(toy.long2$tstop[toy.long2$cens==1 & toy.long2$arm == "A"],
 #' toy.long2$tstop[toy.long2$event==1]))
+#' rep.times2 <- unique(c(toy.long2$tstop[toy.long2$cens==1 & toy.long2$arm == "B"],
+#' toy.long2$tstop[toy.long2$event==1]))
+#' # to put times in same order as arms levels
+#' levels(toy.long2[, "arm"])
 #' # Now, we can replicate the rows
 #' toy.rep   <- replicRows(toy.long2, tstart = "tstart", tstop = "tstop",
-#'                         event = "event", cens = "cens", times = rep.times)
+#'                         event = "event", cens = "cens", 
+#'                         times1 = rep.times1, times2 = rep/times2,
+#'                         arm = "arm")
 #' toy.rep
+#' 
 #' @seealso \code{\link{cens.ipw}}, \code{\link{SHIdat}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}
-replicRows <- function(data, tstart, tstop, event, cens, times){
-
-
-  # gathering all unique times
-  alltimes <- sort(unique(unlist(times)))
-
-
-  tabi <- split(data, data[,"id"])
-  L.tabi   <- length(tabi)
-  tablist <- lapply(1:L.tabi, function(i){
-    l.tabi <- nrow(tabi[[i]])
-    d1 <- list(); d2 <- list()
-    for(j in seq(l.tabi)){
-      cut.t <- alltimes[(alltimes > tabi[[i]][j,tstart]) & (alltimes < tabi[[i]][j,tstop])]
-      d1[[j]] <- survSplit(tabi[[i]][j,],
-                      cut = cut.t,
-                      end = tstop,
-                      event = event)
-      d2[[j]] <- survSplit(tabi[[i]][j,],
-                      cut = cut.t,
-                      end = tstop,
-                      event = cens)
-      d1[[j]]$cens <- d2[[j]]$cens
-    }
-
-    return(do.call(rbind, d1))
-  })
-
-  return(do.call( rbind, tablist )) # 2019-02-03: change the way to return the output
-
+replicRows <- function(data, tstart, tstop, event, cens, times1, times2, arm){
+    
+    tempcall <- match.call()
+    data$weights <- vector("numeric", length = nrow(data))
+    levArms <- levels(data[, arm])
+    
+    # arm 1
+    data1 <- data[data[, arm] == levArms[1], ]
+    # gathering all unique times
+    if(length(times1) != 0){
+        alltimes1 <- sort(unique(unlist(times1)))
+        
+        
+        tabi <- split(data1, data1[,"id"])
+        L.tabi   <- length(tabi)
+        tablist1 <- lapply(1:L.tabi, function(i){
+            l.tabi <- nrow(tabi[[i]])
+            d1 <- list(); d2 <- list()
+            for(j in seq(l.tabi)){
+                cut.t <- alltimes1[(alltimes1 > tabi[[i]][j,tstart]) & (alltimes1 < tabi[[i]][j,tstop])]
+                d1[[j]] <- survSplit(tabi[[i]][j,],
+                                     cut = cut.t,
+                                     end = tstop,
+                                     event = event)
+                d2[[j]] <- survSplit(tabi[[i]][j,],
+                                     cut = cut.t,
+                                     end = tstop,
+                                     event = cens)
+                d1[[j]]$cens <- d2[[j]]$cens
+            }
+            
+            return(do.call(rbind, d1))
+        })
+        res1 <- do.call(rbind, tablist1) 
+    }else{
+        if(!is.na(levArms[1])){
+            res1 <- data1
+        }else{
+            res1 <- NULL
+        }
+    } 
+    
+    
+    # arm 2
+    data2 <- data[data[, arm] == levArms[2], ]
+    # gathering all unique times 
+    if(length(times2) != 0){
+        alltimes2 <- sort(unique(unlist(times2)))
+        
+        
+        tabi <- split(data2, data2[,"id"])
+        L.tabi   <- length(tabi)
+        tablist2 <- lapply(1:L.tabi, function(i){
+            l.tabi <- nrow(tabi[[i]])
+            d1 <- list(); d2 <- list()
+            for(j in seq(l.tabi)){
+                cut.t <- alltimes2[(alltimes2 > tabi[[i]][j,tstart]) & (alltimes2 < tabi[[i]][j,tstop])]
+                d1[[j]] <- survSplit(tabi[[i]][j,],
+                                     cut = cut.t,
+                                     end = tstop,
+                                     event = event)
+                d2[[j]] <- survSplit(tabi[[i]][j,],
+                                     cut = cut.t,
+                                     end = tstop,
+                                     event = cens)
+                d1[[j]]$cens <- d2[[j]]$cens
+            }
+            
+            return(do.call(rbind, d1))
+        })
+        res2 <- do.call(rbind, tablist2)
+    }else{
+        if(!is.na(levArms[2])){
+            res2 <- data2
+        }else{
+            res2 <- NULL
+        }
+    } 
+    
+    
+    return(rbind(res1,res2))
+    
 }
-

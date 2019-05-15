@@ -62,9 +62,9 @@ dates2 <- dates[!(dates \%in\% c("dexac.v2","dexac.v3"))]
 
 # times to keep
 kept.t <- timesTokeep(SHIdat, id = "id",
-                       tstart = "dexac.v2", tstop = "ddn",
-                       mes.cov = list(vect.ps, vect.ttc, vect.tran),
-                       time.cov = list(dates, dates, dates2))
+                      tstart = "dexac.v2", tstop = "ddn",
+                      mes.cov = list(vect.ps, vect.ttc, vect.tran),
+                      time.cov = list(dates, dates, dates2))
 # Now, we can build the long format
 SHIlong <- wideToLongTDC(SHIdat, id = "id",
                          tstart = "dexac.v2", tstop = "ddn",
@@ -99,20 +99,30 @@ SHIlong2 <- SHIlong[!is.na(SHIlong$ddt.v1),]
 SHIlong2 <- cens.ipw(SHIlong2, id = "id", tstart = "tstart", tstop  = "tstop",
                      event = "event", arm = "bras.f", realtrt = FALSE,
                      censTime ="debttCO")
-# We collect all event times (death and treatment censoring)
-replic.times <- unique(c(SHIlong2$tstop[SHIlong2$cens==1],
-                         SHIlong2$tstop[SHIlong2$event==1]))
-
-# Now, we can replicate the rows
+# We collect all event times 
+# (death for both arms and treatment censoring according to the trt arm)
+replic.times.MTA <-
+    unique(c(SHIlong2$tstop[SHIlong2$cens == 1 &
+    SHIlong2$bras.f == "MTA"],
+    SHIlong2$tstop[SHIlong2$event == 1]))
+replic.times.CT <-
+    unique(c(SHIlong2$tstop[SHIlong2$cens == 1 &
+    SHIlong2$bras.f == "CT"],
+    SHIlong2$tstop[SHIlong2$event == 1]))
+# to put times in same order as arms levels
+levels(SHIlong2[,"bras.f"])
 SHIrep  <- replicRows(SHIlong2, tstart = "tstart", tstop = "tstop",
-                      event = "event", cens = "cens", times = replic.times)
+                      event = "event", cens = "cens", 
+                      times1 = replic.times.MTA, times2=replic.times.CT, 
+                      arm = "bras.f")
 
 # Estimation of the stabilized weights
 library(survival)
-SHIres <- ipcw(SHIrep, tstart = tstart, tstop = tstop, cens = cens,
-               arm="bras.f",
-               bas.cov = c("agerand", "sex.f","tt_Lnum", "rmh_alea.c", "pathway.f"),
-               conf = c("ps", "ttc", "tran"), trunc = 0.05)
+SHIres <- ipcw(SHIrep, id = "id", tstart = tstart, tstop = tstop, cens = cens,
+               arm = "bras.f", 
+               bas.cov = c("agerand", "sex.f", "tt_Lnum", "rmh_alea.c", "pathway.f"),
+               conf = c("ps", "ttc", "tran"),
+               trunc = 0.05, type = 'kaplan-meier')
 
 # To have conventional therapy (CT) as reference
 SHIres$bras.f <- relevel(SHIres$bras.f, ref="CT")

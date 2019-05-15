@@ -4,10 +4,12 @@
 \alias{ipcw}
 \title{Computing the stabilized IPCweights}
 \usage{
-ipcw(data, tstart, tstop, cens, arm, bas.cov, conf, trunc = NULL)
+ipcw(data, id, tstart, tstop, cens, arm, bas.cov, conf, trunc, type)
 }
 \arguments{
 \item{data}{a dataframe containing the following variables}
+
+\item{id}{the patient's id}
 
 \item{tstart}{the date of the beginning of the follow-up (in numeric format, with the first being equal at 0)}
 
@@ -22,7 +24,9 @@ ipcw(data, tstart, tstop, cens, arm, bas.cov, conf, trunc = NULL)
 \item{conf}{a vector of time-dependent confounders}
 
 \item{trunc}{an optional fraction for the weights. For instance, when trunc = 0.01,
-the left tail is truncated to the 1st percentile and the right tail is truncated to the 99th percentile}
+the left tail is truncated to the 1st percentile and the right tail is truncated to the 99th percentile. The default is \code{NULL}.}
+
+\item{type}{type a character string specifying the type of survival curve. The default is \code{type=`kaplan-meier`}}
 }
 \value{
 the initial dataframe data with stabilized IPCweights as additional arguments. By default, the un-truncated stabilized weights are given. If the trunc option is not NULL then the truncated stabilized weights are also given.
@@ -32,10 +36,10 @@ Computing the stabilized IPCweights
 }
 \examples{
 ## Not run
-# ipcw(toy.rep, tstart = tstart, tstop = tstop, cens = cens,
+# ipcw(toy.rep, id = "id", tstart = tstart, tstop = tstop, cens = cens,
 # arm="arm",
-# bas.cov = c("age", "arm", "swtrtdt"),
-# conf = c("TDconf"), trunc = 0.05)
+# bas.cov = c("age"),
+# conf = c("TDconf"), trunc = 0.05, type='kaplan-meier')
 
 # see ?SHIdat for a complete example
 }
