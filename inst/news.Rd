@@ -28,5 +28,11 @@
 }
 
 
-
+\section{Changes in version 1.0.4}{
+  \itemize{
+    \item 16 February 2021 Correction made l.66 in replicRows.R: change from \code{rep\\times2} into \code{rep.times2}
+    \item 16 February 2021 Change in wideToLong.R (l.82 and l.83) to no longer call \code{order()} on data frame 
+    \item 16 February 2021 Update of the main reference in all functions and related documentation
+  }
+}
 

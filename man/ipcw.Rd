@@ -4,7 +4,18 @@
 \alias{ipcw}
 \title{Computing the stabilized IPCweights}
 \usage{
-ipcw(data, id, tstart, tstop, cens, arm, bas.cov, conf, trunc, type)
+ipcw(
+  data,
+  id,
+  tstart,
+  tstop,
+  cens,
+  arm,
+  bas.cov,
+  conf,
+  trunc = NULL,
+  type = "kaplan-meier"
+)
 }
 \arguments{
 \item{data}{a dataframe containing the following variables}
@@ -24,9 +35,9 @@ ipcw(data, id, tstart, tstop, cens, arm, bas.cov, conf, trunc, type)
 \item{conf}{a vector of time-dependent confounders}
 
 \item{trunc}{an optional fraction for the weights. For instance, when trunc = 0.01,
-the left tail is truncated to the 1st percentile and the right tail is truncated to the 99th percentile. The default is \code{NULL}.}
+the left tail is truncated to the 1st percentile and the right tail is truncated to the 99th percentile}
 
-\item{type}{type a character string specifying the type of survival curve. The default is \code{type=`kaplan-meier`}}
+\item{type}{a character string specifying the type of survival curve. The default is \code{type=`kaplan-meier`}}
 }
 \value{
 the initial dataframe data with stabilized IPCweights as additional arguments. By default, the un-truncated stabilized weights are given. If the trunc option is not NULL then the truncated stabilized weights are also given.
@@ -36,15 +47,15 @@ Computing the stabilized IPCweights
 }
 \examples{
 ## Not run
-# ipcw(toy.rep, id = "id", tstart = tstart, tstop = tstop, cens = cens,
+# ipcw(toy.rep, tstart = tstart, tstop = tstop, cens = cens,
 # arm="arm",
 # bas.cov = c("age"),
-# conf = c("TDconf"), trunc = 0.05, type='kaplan-meier')
+# conf = c("TDconf"), trunc = 0.05)
 
 # see ?SHIdat for a complete example
 }
 \references{
-Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 }
 \seealso{
 \code{\link{SHIdat}}

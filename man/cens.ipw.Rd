@@ -4,8 +4,18 @@
 \alias{cens.ipw}
 \title{Censoring patient initiating the other arm treatment and building a treatment censoring indicator cens}
 \usage{
-cens.ipw(data, id, tstart, tstop, event, censTime, arm, realtrt = FALSE,
-  trt.start = NULL, trt.stop = NULL)
+cens.ipw(
+  data,
+  id,
+  tstart,
+  tstop,
+  event,
+  censTime,
+  arm,
+  realtrt = FALSE,
+  trt.start = NULL,
+  trt.stop = NULL
+)
 }
 \arguments{
 \item{data}{a dataframe containing the following variables}
@@ -79,7 +89,7 @@ toy.long
 toy.long2
 }
 \references{
-Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 }
 \seealso{
 \code{\link{SHIdat}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}

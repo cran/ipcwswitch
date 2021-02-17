@@ -40,7 +40,7 @@ kept.t[[1]][[3]]
 kept.t[[2]][[3]]
 }
 \references{
-Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 }
 \seealso{
 \code{\link{SHIdat}}

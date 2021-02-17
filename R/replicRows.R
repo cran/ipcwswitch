@@ -18,7 +18,7 @@
 #'
 #' @importFrom survival survSplit
 #'
-#' @references Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+#' @references Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 #'
 #'
 #' @examples
@@ -63,7 +63,7 @@
 #' # Now, we can replicate the rows
 #' toy.rep   <- replicRows(toy.long2, tstart = "tstart", tstop = "tstop",
 #'                         event = "event", cens = "cens", 
-#'                         times1 = rep.times1, times2 = rep/times2,
+#'                         times1 = rep.times1, times2 = rep.times2,
 #'                         arm = "arm")
 #' toy.rep
 #' 

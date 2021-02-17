@@ -4,8 +4,17 @@
 \alias{wideToLongTDC}
 \title{Function from wide to long format}
 \usage{
-wideToLongTDC(data, id, tstart, tstop, event, bas.cov, mes.cov, time.cov,
-  times)
+wideToLongTDC(
+  data,
+  id,
+  tstart,
+  tstop,
+  event,
+  bas.cov,
+  mes.cov,
+  time.cov,
+  times
+)
 }
 \arguments{
 \item{data}{a dataframe containing the variables id, tstart, tstop, mes.cov and time.cov}
@@ -54,7 +63,7 @@ times = kept.t[[1]])
 toy.long
 }
 \references{
-Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 }
 \seealso{
 \code{\link{SHIdat}}, \code{\link{timesTokeep}}

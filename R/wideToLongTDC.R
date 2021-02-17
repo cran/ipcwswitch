@@ -18,7 +18,7 @@
 #' aas the name of the corresponding list member.
 #' @export
 #'
-#' @references Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+#' @references Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 #'
 #' @examples
 #' # To obtain the times parameter, we can apply the timesTokeep function on the same
@@ -75,11 +75,12 @@ wideToLongTDC <- function(data, id, tstart, tstop, event,
     }
     # Time-dpt confounders
     for(m in seq(L.cov)){
-      # browser()
+      #browser()
       # creating a column with the mth name in the list of time-dpt conf
       tabi[[i]][,names(mes.cov)[m]] <- vector("numeric", ntimesP[[i]]-1)
       # order corresponding dates
-      ord1   <- order(datatabi[[i]][, time.cov[[m]]])
+      columns <- datatabi[[i]][, time.cov[[m]]]
+      ord1 <- do.call('order', as.data.frame(t(columns)))
       dates <- time.cov[[m]][ord1]
       # corresponding ordered values of the time-dpt cov
       td.cf <- mes.cov[[m]][ord1]

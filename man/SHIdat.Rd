@@ -46,7 +46,7 @@ Acknowledgments: we thank the patients who volunteered to participate in this st
 \references{
 Le Tourneau, C., Delord, J. P., Goncalves, A., et al. (2015). "Molecularly targeted therapy based on tumour molecular profiling versus conventional therapy for advanced cancer (SHIVA): a multicentre, open-label, proof-of-concept, randomised, controlled phase 2 trial". The Lancet Oncology, 16(13), 1324-1334. doi : "10.1016/S1470-2045(15)00188-6"
 
-Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An {R} Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 }
 \examples{
 \donttest{

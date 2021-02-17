@@ -20,10 +20,10 @@ replicRows(data, tstart, tstop, event, cens, times1, times2, arm)
 \item{cens}{the indicator of treatment censoring (denoted by 1 at the end of the follow-up)}
 
 \item{times1}{a vector of times (in numeric format) indicating the times according to which
-the rows have to be split for patients in the first arm }
+the rows have to be split for patients in the first arm}
 
 \item{times2}{a vector of times (in numeric format) indicating the times according to which
-the rows have to be split for patients in the second arm }
+the rows have to be split for patients in the second arm}
 
 \item{arm}{the randomized treatment (2-levels factor)}
 }
@@ -32,7 +32,7 @@ a formatted dataframe with the rows replicated according to the provided times p
 }
 \description{
 Function to replicate the rows so that each patients' follow-up is split
-according to all event times (death for both arms and treatment censoring according to the trt arm)
+according to all event times (times parameter)
 up to each patient's end time
 }
 \examples{
@@ -67,12 +67,11 @@ tablist <- lapply(1:L.tabi, function(i){
 toy.long2 <- cens.ipw(toy.long, id = "id", tstart = "tstart", tstop = "tstop",
 event = "event", arm = "arm",
 realtrt = FALSE, censTime ="swtrtdt")
-# We collect all event times 
-# (death for both arms and treatment censoring according to the trt arm)
+# We collect all event times (death for both arms and treatment censoring according to the trt arm)
 rep.times1 <- unique(c(toy.long2$tstop[toy.long2$cens==1 & toy.long2$arm == "A"],
-                       toy.long2$tstop[toy.long2$event==1]))
+toy.long2$tstop[toy.long2$event==1]))
 rep.times2 <- unique(c(toy.long2$tstop[toy.long2$cens==1 & toy.long2$arm == "B"],
-                       toy.long2$tstop[toy.long2$event==1]))
+toy.long2$tstop[toy.long2$event==1]))
 # to put times in same order as arms levels
 levels(toy.long2[, "arm"])
 # Now, we can replicate the rows
@@ -80,10 +79,11 @@ toy.rep   <- replicRows(toy.long2, tstart = "tstart", tstop = "tstop",
                         event = "event", cens = "cens", 
                         times1 = rep.times1, times2 = rep.times2,
                         arm = "arm")
-(toy.rep  <- toy.rep[order(toy.rep$id), ])
+toy.rep
+
 }
 \references{
-Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 }
 \seealso{
 \code{\link{cens.ipw}}, \code{\link{SHIdat}}, \code{\link{timesTokeep}}, \code{\link{wideToLongTDC}}

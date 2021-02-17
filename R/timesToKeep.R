@@ -15,7 +15,7 @@
 #' the times of changes in time-varying covariates
 #' @export
 #'
-#' @references Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. "An R Package for IPCW: Application to switches in clinical trials" \emph{(submitted)}
+#' @references Graffeo, N., Latouche, A., Le Tourneau C., Chevret, S. (2019) "ipcwswitch: an R package for inverse probability of censoring weighting with an application to switches in clinical trials". Computers in biology and medicine, 111, 103339. doi : "10.1016/j.compbiomed.2019.103339"
 #'
 #' @examples kept.t <- timesTokeep(toydata, id = "id",
 #' tstart = "randt", tstop = "lastdt",
